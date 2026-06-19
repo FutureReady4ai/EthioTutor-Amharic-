@@ -1,612 +1,534 @@
 <!DOCTYPE html>
-<html lang="am">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>አማርኛ ይማሩ — Learn Amharic</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;600;700&family=Noto+Sans+Ethiopic:wght@300;400;600&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Amharic Tutor</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --warm-bg: #FFF9F0;
-    --dark-text: #1A1A2E;
-    --muted: #6B7280;
-    --card-bg: #FFFFFF;
-    --ethiopian-green: #078930;
-    --ethiopian-yellow: #FCDD09;
-    --ethiopian-red: #DA121A;
-    --accent-purple: #5B21B6;
-    --accent-teal: #0E7490;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--warm-bg);
-    color: var(--dark-text);
-    min-height: 100vh;
-  }
-
-  .header {
-    background: linear-gradient(135deg, var(--ethiopian-green), #065F21);
-    padding: 20px 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    cursor: pointer;
-  }
-
-  .header-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-  }
-
-  .header h1 {
-    margin: 0;
-    font-size: 22px;
-    color: #fff;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-
-  .header p {
-    margin: 0;
-    font-size: 12px;
-    color: rgba(255,255,255,0.8);
-    font-weight: 500;
-  }
-
-  .flag {
-    display: flex;
-    gap: 3px;
-  }
-
-  .flag div {
-    width: 20px;
-    height: 6px;
-    border-radius: 3px;
-    opacity: 0.9;
-  }
-
-  .content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 28px 20px;
-  }
-
-  .welcome {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 28px 28px 24px;
-    margin-bottom: 28px;
-    border-left: 5px solid var(--ethiopian-yellow);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-  }
-
-  .welcome h2 {
-    margin: 0 0 8px;
-    font-size: 24px;
-    font-family: 'Noto Serif Ethiopic', serif;
-    color: var(--dark-text);
-  }
-
-  .welcome p {
-    margin: 0;
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .nav-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 28px;
-  }
-
-  .nav-card {
-    background: var(--card-bg);
-    border: 2px solid #E5E7EB;
-    border-radius: 16px;
-    padding: 18px 16px;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.25s;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-  }
-
-  .nav-card:hover {
-    border-color: var(--accent-purple);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(91, 33, 182, 0.18);
-  }
-
-  .nav-card-icon {
-    font-size: 28px;
-    margin-bottom: 8px;
-  }
-
-  .nav-card-label {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--dark-text);
-    margin-bottom: 4px;
-  }
-
-  .nav-card-desc {
-    font-size: 13px;
-    color: var(--muted);
-  }
-
-  .lessons-title {
-    font-size: 18px;
-    color: var(--dark-text);
-    font-weight: 700;
-    margin-bottom: 14px;
-  }
-
-  .lessons-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .lesson-btn {
-    background: var(--card-bg);
-    border: 1.5px solid #E5E7EB;
-    border-radius: 16px;
-    padding: 18px 22px;
-    cursor: pointer;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    transition: all 0.25s;
-    font-family: inherit;
-  }
-
-  .lesson-btn:hover {
-    border-color: var(--ethiopian-green);
-    transform: translateX(4px);
-    background: rgba(7, 137, 48, 0.05);
-  }
-
-  .lesson-icon {
-    font-size: 32px;
-  }
-
-  .lesson-content {
-    flex: 1;
-  }
-
-  .lesson-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--dark-text);
-    font-family: 'Noto Serif Ethiopic', serif;
-  }
-
-  .lesson-desc {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  .lesson-arrow {
-    color: #D1D5DB;
-    font-size: 18px;
-  }
-
-  .view-hidden {
-    display: none;
-  }
-
-  .phrase-card {
-    cursor: pointer;
-    background: var(--card-bg);
-    border: 2px solid #E5E7EB;
-    border-radius: 16px;
-    padding: 20px 24px;
-    transition: all 0.35s cubic-bezier(.4,0,.2,1);
-    transform: scale(1);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    margin-bottom: 14px;
-    animation: fadeSlideIn 0.4s ease both;
-  }
-
-  .phrase-card:hover {
-    border-color: var(--ethiopian-green);
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(7, 137, 48, 0.22);
-  }
-
-  .phrase-amharic {
-    font-size: 32px;
-    font-family: 'Noto Serif Ethiopic', serif;
-    font-weight: 700;
-    color: var(--dark-text);
-    margin-bottom: 6px;
-  }
-
-  .phrase-transliteration {
-    font-size: 15px;
-    color: var(--accent-purple);
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    letter-spacing: 0.5px;
-  }
-
-  .phrase-flipped {
-    margin-top: 12px;
-    animation: fadeIn 0.3s ease;
-  }
-
-  .phrase-english {
-    font-size: 17px;
-    color: var(--dark-text);
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .phrase-audio {
-    margin-top: 8px;
-    background: rgba(252, 221, 9, 0.2);
-    border-radius: 8px;
-    padding: 6px 12px;
-    display: inline-block;
-    font-size: 13px;
-    color: #92400E;
-    font-family: 'DM Mono', monospace;
-    font-weight: 500;
-  }
-
-  .phrase-hint {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 8px;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .back-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--accent-purple);
-    font-size: 15px;
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .back-button:hover {
-    text-decoration: underline;
-  }
-
-  @keyframes fadeIn { 
-    from { opacity: 0; } 
-    to { opacity: 1; } 
-  }
-
-  @keyframes fadeSlideIn { 
-    from { opacity: 0; transform: translateY(12px); } 
-    to { opacity: 1; transform: translateY(0); } 
-  }
-
-  @media (max-width: 600px) {
-    .nav-cards {
-      grid-template-columns: 1fr;
-    }
-  }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #078930; --green-dk: #065f21; --green-lt: #07893012;
+  --yellow: #FCDD09; --purple: #5B21B6; --purple-lt: #5B21B610;
+  --bg: #F4F6FA; --surface: #ffffff; --surface2: #F8F9FC;
+  --border: #E5E7EB; --border2: #D1D5DB; --text: #1A1A2E; --muted: #6B7280;
+  --r: 12px; --rs: 8px;
+}
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+.hdr { background: var(--green); padding: 15px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 20; box-shadow: 0 2px 12px rgba(7,137,48,0.25); }
+.hdr-left { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.hdr-icon { width: 42px; height: 42px; border-radius: 10px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 21px; }
+.hdr h1 { font-size: 18px; font-weight: 700; color: #fff; line-height: 1.2; font-family: 'Noto Serif Ethiopic', serif; }
+.hdr p { font-size: 11px; color: rgba(255,255,255,0.78); margin-top: 1px; }
+.flag { display: flex; gap: 3px; }
+.flag div { width: 16px; height: 5px; border-radius: 2px; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 24px 16px 56px; }
+.back { background: none; border: none; cursor: pointer; color: var(--purple); font-size: 14px; font-weight: 600; font-family: 'Inter', sans-serif; margin-bottom: 18px; display: flex; align-items: center; gap: 5px; padding: 0; }
+.back:hover { color: #3b0e8c; }
+.welcome { background: var(--surface); border-radius: var(--r); border: 1px solid var(--border); border-left: 5px solid var(--yellow); padding: 22px 24px; margin-bottom: 20px; }
+.welcome h2 { font-size: 23px; font-weight: 700; font-family: 'Noto Serif Ethiopic', serif; margin-bottom: 4px; }
+.welcome .sub { font-size: 14px; color: var(--purple); font-weight: 600; margin-bottom: 8px; }
+.welcome p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+.nav-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.nav-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 18px; cursor: pointer; transition: all 0.2s; }
+.nav-card:hover { border-color: var(--green); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(7,137,48,0.1); }
+.nav-card.wide { grid-column: 1 / -1; }
+.nav-icon { font-size: 27px; margin-bottom: 8px; }
+.nav-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+.nav-desc { font-size: 12px; color: var(--muted); }
+.sec-title { font-size: 16px; font-weight: 600; margin: 0 0 12px; }
+.lesson-row { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 14px 18px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 14px; transition: all 0.2s; }
+.lesson-row:hover { border-color: var(--green); transform: translateX(4px); }
+.l-emoji { font-size: 29px; flex-shrink: 0; }
+.l-name { font-size: 16px; font-weight: 600; font-family: 'Noto Serif Ethiopic', serif; }
+.l-count { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.l-arr { margin-left: auto; font-size: 17px; color: var(--border2); }
+.phrase-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.pc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 17px; cursor: pointer; transition: all 0.25s; }
+.pc:hover, .pc.on { border-color: var(--green); background: var(--green-lt); }
+.pc-am { font-size: 29px; font-family: 'Noto Serif Ethiopic', serif; font-weight: 700; margin-bottom: 4px; }
+.pc-tr { font-size: 13px; color: var(--purple); font-weight: 600; }
+.pc-reveal { margin-top: 11px; border-top: 1px solid var(--border); padding-top: 11px; }
+.pc-en { font-size: 15px; font-weight: 600; margin-bottom: 7px; }
+.pc-audio { display: inline-block; background: rgba(252,221,9,0.22); border-radius: var(--rs); padding: 4px 10px; font-size: 12px; color: #7c5c00; font-family: 'JetBrains Mono', monospace; }
+.pc-hint { font-size: 11px; color: var(--muted); margin-top: 7px; }
+.qhdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 13px; }
+.q-ctr { font-size: 13px; color: var(--muted); font-weight: 500; }
+.q-scr { background: var(--green-lt); color: var(--green); padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+.pbar { width: 100%; height: 5px; background: var(--border); border-radius: 3px; margin-bottom: 22px; }
+.pfill { height: 100%; background: var(--green); border-radius: 3px; transition: width 0.35s; }
+.qcard { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--green); border-radius: var(--r); padding: 22px; margin-bottom: 15px; }
+.qtext { font-size: 17px; font-weight: 600; line-height: 1.5; }
+.opt { width: 100%; background: var(--surface); border: 1px solid var(--border2); border-radius: var(--r); padding: 13px 18px; margin-bottom: 8px; cursor: pointer; text-align: left; font-size: 15px; font-family: 'Inter', sans-serif; font-weight: 500; color: var(--text); transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+.opt:hover:not(:disabled) { border-color: var(--green); background: var(--green-lt); }
+.opt.ok { background: #EAF3DE; border-color: #3B6D11; color: #2d5a0e; }
+.opt.no { background: #FCEBEB; border-color: #A32D2D; color: #7a1f1f; }
+.opt:disabled { cursor: default; }
+.expbox { background: var(--surface2); border-radius: var(--r); border: 1px solid var(--border); padding: 15px 17px; margin-top: 4px; }
+.explbl { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.07em; }
+.exptxt { font-size: 14px; line-height: 1.65; }
+.nbtn { margin-top: 11px; background: var(--purple); color: #fff; border: none; border-radius: var(--rs); padding: 10px 28px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+.nbtn:hover { background: #3b0e8c; }
+.rbox { text-align: center; padding: 48px 20px; }
+.rem { font-size: 58px; margin-bottom: 13px; }
+.rtitle { font-size: 25px; font-weight: 700; margin-bottom: 8px; }
+.rsub { font-size: 16px; color: var(--muted); margin-bottom: 26px; }
+.brow { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.bgr { background: var(--green); color: #fff; border: none; border-radius: var(--rs); padding: 11px 26px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+.bgr:hover { background: var(--green-dk); }
+.bou { background: transparent; color: var(--purple); border: 1px solid var(--purple); border-radius: var(--rs); padding: 11px 26px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+.bou:hover { background: var(--purple-lt); }
+.alpha-intro { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+.atw { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--border); }
+.at { width: 100%; border-collapse: collapse; min-width: 560px; }
+.at th { padding: 9px 6px; font-size: 11px; color: var(--muted); font-weight: 600; text-align: center; background: var(--surface2); border-bottom: 1px solid var(--border); letter-spacing: 0.04em; }
+.at th:first-child { text-align: left; padding-left: 14px; }
+.at tr:nth-child(even) td { background: var(--surface2); }
+.at td { text-align: center; padding: 5px 3px; }
+.at td:first-child { text-align: left; padding-left: 14px; font-size: 13px; font-weight: 600; color: var(--purple); }
+.fc { display: inline-block; font-size: 21px; font-family: 'Noto Serif Ethiopic', serif; border-radius: 6px; padding: 3px 5px; transition: all 0.18s; color: var(--text); }
+.fc:hover { background: rgba(252,221,9,0.38); transform: scale(1.35); cursor: default; }
+.fc.f0 { background: var(--green-lt); }
+.grammar-nav { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+.gtab { background: var(--surface); border: 1px solid var(--border2); border-radius: 20px; padding: 6px 15px; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; transition: all 0.18s; }
+.gtab:hover { border-color: var(--green); color: var(--green); }
+.gtab.on { background: var(--green); border-color: var(--green); color: #fff; font-weight: 600; }
+.gsec { display: none; }
+.gsec.on { display: block; animation: fi 0.3s ease; }
+@keyframes fi { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+.gcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 22px; margin-bottom: 14px; }
+.gcard h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+.gcard p { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 10px; }
+.gcard p:last-child { margin-bottom: 0; }
+.gtable { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+.gtable th { background: var(--surface2); border: 1px solid var(--border); padding: 8px 12px; text-align: left; font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.gtable td { border: 1px solid var(--border); padding: 9px 12px; line-height: 1.5; }
+.gtable tr:nth-child(even) td { background: var(--surface2); }
+.am { font-family: 'Noto Serif Ethiopic', serif; font-size: 18px; font-weight: 700; color: var(--text); }
+.tr2 { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--purple); }
+.en2 { font-size: 13px; color: var(--muted); }
+.tip { background: rgba(252,221,9,0.15); border-left: 4px solid var(--yellow); border-radius: 0 var(--rs) var(--rs) 0; padding: 11px 15px; margin: 10px 0; font-size: 13px; color: var(--text); line-height: 1.65; }
+.tip strong { color: #7c5c00; }
+.note { background: var(--green-lt); border-left: 4px solid var(--green); border-radius: 0 var(--rs) var(--rs) 0; padding: 11px 15px; margin: 10px 0; font-size: 13px; color: var(--text); line-height: 1.65; }
+.note strong { color: var(--green-dk); }
+.ex { background: var(--surface2); border-radius: var(--rs); border: 1px solid var(--border); padding: 12px 15px; margin: 8px 0; }
+.ex-am { font-family: 'Noto Serif Ethiopic', serif; font-size: 20px; font-weight: 700; margin-bottom: 3px; }
+.ex-tr { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--purple); margin-bottom: 2px; }
+.ex-en { font-size: 13px; color: var(--muted); }
+.pill { display: inline-block; background: var(--green-lt); color: var(--green-dk); border-radius: 20px; padding: 2px 10px; font-size: 12px; font-weight: 600; margin: 2px; font-family: 'JetBrains Mono', monospace; }
+.pill.pu { background: var(--purple-lt); color: var(--purple); }
+.pill.yl { background: rgba(252,221,9,0.2); color: #7c5c00; }
+.num-title { font-size: 17px; font-weight: 700; margin: 28px 0 8px; }
+.num-intro { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+.num-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 8px; }
+.num-cell { background: var(--surface); border: 1px solid var(--border); border-radius: var(--rs); padding: 12px 8px; text-align: center; transition: all 0.18s; }
+.num-cell:hover { border-color: var(--green); background: var(--green-lt); }
+.num-am { font-family: 'Noto Serif Ethiopic', serif; font-size: 26px; font-weight: 700; color: var(--text); }
+.num-val { font-size: 12px; color: var(--purple); font-weight: 600; margin-top: 3px; font-family: 'JetBrains Mono', monospace; }
+.alpha-count { display: inline-block; background: var(--green-lt); color: var(--green-dk); border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 600; margin-left: 8px; }
+@media (max-width: 560px) {
+  .nav-grid { grid-template-columns: 1fr; }
+  .nav-card.wide { grid-column: 1; }
+  .phrase-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
-
-<!-- Header -->
-<div class="header">
-  <div class="header-left" onclick="goHome()">
-    <div class="header-icon">🇪🇹</div>
+<div class="hdr">
+  <div class="hdr-left" id="hdrBtn">
+    <div class="hdr-icon">&#127466;&#127481;</div>
     <div>
       <h1>አማርኛ ይማሩ</h1>
-      <p>Learn Amharic — Your Ethiopian Language Tutor</p>
+      <p>Learn Amharic &mdash; Your Ethiopian Language Tutor</p>
     </div>
   </div>
   <div class="flag">
-    <div style="background: #078930;"></div>
-    <div style="background: #FCDD09;"></div>
-    <div style="background: #DA121A;"></div>
+    <div style="background:#078930"></div>
+    <div style="background:#FCDD09"></div>
+    <div style="background:#DA121A"></div>
   </div>
 </div>
-
-<!-- Content -->
-<div class="content">
-  
-  <!-- Home View -->
-  <div id="homeView">
-    <div class="welcome">
-      <h2>እንኳን ደህና መጡ!</h2>
-      <p style="color: var(--accent-purple); font-weight: 600; margin-bottom: 8px;">Enkwan dehna mettu! — Welcome!</p>
-      <p>Amharic (አማርኛ) is Ethiopia's official language, spoken by over 50 million people. It uses the beautiful Ge'ez script — one of the oldest writing systems in the world. Start with lessons below to learn vocabulary, explore the alphabet, test your knowledge with quizzes, or chat with your AI tutor.</p>
-    </div>
-
-    <div class="nav-cards">
-      <div class="nav-card" onclick="goView('chat')">
-        <div class="nav-card-icon">💬</div>
-        <div class="nav-card-label">AI Tutor Chat</div>
-        <div class="nav-card-desc">Ask anything about Amharic</div>
-      </div>
-      <div class="nav-card" onclick="goView('quiz')">
-        <div class="nav-card-icon">📝</div>
-        <div class="nav-card-label">Take a Quiz</div>
-        <div class="nav-card-desc">Test your knowledge</div>
-      </div>
-      <div class="nav-card" onclick="goView('alphabet')">
-        <div class="nav-card-icon">✍️</div>
-        <div class="nav-card-label">ፊደል Alphabet</div>
-        <div class="nav-card-desc">Learn the Ge'ez script</div>
-      </div>
-    </div>
-
-    <h3 class="lessons-title">📚 Vocabulary Lessons</h3>
-    <div class="lessons-list">
-      <button class="lesson-btn" onclick="goLesson(0)">
-        <div class="lesson-icon">👋</div>
-        <div class="lesson-content">
-          <div class="lesson-title">ሰላም — Greetings</div>
-          <div class="lesson-desc">11 phrases — Tap to study</div>
-        </div>
-        <div class="lesson-arrow">→</div>
-      </button>
-      <button class="lesson-btn" onclick="goLesson(1)">
-        <div class="lesson-icon">🔢</div>
-        <div class="lesson-content">
-          <div class="lesson-title">ቁጥሮች — Numbers</div>
-          <div class="lesson-desc">13 phrases — Tap to study</div>
-        </div>
-        <div class="lesson-arrow">→</div>
-      </button>
-      <button class="lesson-btn" onclick="goLesson(2)">
-        <div class="lesson-icon">🗣️</div>
-        <div class="lesson-content">
-          <div class="lesson-title">መሠረታዊ — Essentials</div>
-          <div class="lesson-desc">9 phrases — Tap to study</div>
-        </div>
-        <div class="lesson-arrow">→</div>
-      </button>
-      <button class="lesson-btn" onclick="goLesson(3)">
-        <div class="lesson-icon">🍲</div>
-        <div class="lesson-content">
-          <div class="lesson-title">ምግብ — Food & Drink</div>
-          <div class="lesson-desc">10 phrases — Tap to study</div>
-        </div>
-        <div class="lesson-arrow">→</div>
-      </button>
-      <button class="lesson-btn" onclick="goLesson(4)">
-        <div class="lesson-icon">👨‍👩‍👧‍👦</div>
-        <div class="lesson-content">
-          <div class="lesson-title">ቤተሰብ — Family</div>
-          <div class="lesson-desc">9 phrases — Tap to study</div>
-        </div>
-        <div class="lesson-arrow">→</div>
-      </button>
-    </div>
-  </div>
-
-  <!-- Lesson View -->
-  <div id="lessonView" class="view-hidden">
-    <button class="back-button" onclick="goHome()">← Back to lessons</button>
-    <div id="lessonContent"></div>
-  </div>
-
-  <!-- Chat View -->
-  <div id="chatView" class="view-hidden">
-    <button class="back-button" onclick="goHome()">← Back</button>
-    <div style="text-align: center; padding: 40px 20px;">
-      <p style="font-size: 18px; color: var(--dark-text); font-weight: 700;">💬 AI Chat Coming Soon</p>
-      <p style="color: var(--muted); margin-top: 8px;">Chat feature will be available in next update</p>
-    </div>
-  </div>
-
-  <!-- Quiz View -->
-  <div id="quizView" class="view-hidden">
-    <button class="back-button" onclick="goHome()">← Back</button>
-    <div style="text-align: center; padding: 40px 20px;">
-      <p style="font-size: 18px; color: var(--dark-text); font-weight: 700;">📝 Quiz Coming Soon</p>
-      <p style="color: var(--muted); margin-top: 8px;">Interactive quiz will be available in next update</p>
-    </div>
-  </div>
-
-  <!-- Alphabet View -->
-  <div id="alphabetView" class="view-hidden">
-    <button class="back-button" onclick="goHome()">← Back</button>
-    <div style="text-align: center; padding: 40px 20px;">
-      <p style="font-size: 18px; color: var(--dark-text); font-weight: 700;">✍️ Alphabet Coming Soon</p>
-      <p style="color: var(--muted); margin-top: 8px;">Full Fidel script guide will be available in next update</p>
-    </div>
-  </div>
-
-</div>
-
+<div class="wrap"><div id="app"></div></div>
+ 
 <script>
 var LESSONS = [
-  {
-    id: "greetings",
-    title: "ሰላም — Greetings",
-    icon: "👋",
-    phrases: [
-      { amharic: "ሰላም", transliteration: "Selam", english: "Hello / Peace", audio: "seh-LAHM" },
-      { amharic: "እንደምን ነህ?", transliteration: "Endemin neh?", english: "How are you? (to a male)", audio: "en-deh-MIN neh" },
-      { amharic: "እንደምን ነሽ?", transliteration: "Endemin nesh?", english: "How are you? (to a female)", audio: "en-deh-MIN nesh" },
-      { amharic: "ደህና ነኝ", transliteration: "Dehna negn", english: "I am fine", audio: "DEH-nah neñ" },
-      { amharic: "አመሰግናለሁ", transliteration: "Ameseginalehu", english: "Thank you", audio: "ah-meh-seh-gih-NAH-leh-hu" },
-      { amharic: "ደህና ሁን", transliteration: "Dehna hun", english: "Goodbye (to a male)", audio: "DEH-nah hoon" },
-      { amharic: "ደህና ሁኚ", transliteration: "Dehna hugni", english: "Goodbye (to a female)", audio: "DEH-nah hoo-NYI" },
-      { amharic: "ጨው ????", transliteration: "Chew", english: "Good evening", audio: "CHEW" },
-      { amharic: "ጀምሩ", transliteration: "Jemiru", english: "Come in / Enter", audio: "JEM-i-roo" },
-      { amharic: "አርአያ", transliteration: "Areya", english: "How nice to see you", audio: "ah-REH-yah" },
-      { amharic: "ታስታ?", transliteration: "Tasta?", english: "How have you been?", audio: "TAHS-tah" }
-    ]
-  },
-  {
-    id: "numbers",
-    title: "ቁጥሮች — Numbers",
-    icon: "🔢",
-    phrases: [
-      { amharic: "አንድ", transliteration: "And", english: "One (1)", audio: "ahnd" },
-      { amharic: "ሁለት", transliteration: "Hulet", english: "Two (2)", audio: "hoo-LET" },
-      { amharic: "ሦስት", transliteration: "Sost", english: "Three (3)", audio: "sohst" },
-      { amharic: "አራት", transliteration: "Arat", english: "Four (4)", audio: "ah-RAHT" },
-      { amharic: "አምስት", transliteration: "Amist", english: "Five (5)", audio: "ah-MIST" },
-      { amharic: "ስድስት", transliteration: "Sidist", english: "Six (6)", audio: "sih-DIST" },
-      { amharic: "ሰባት", transliteration: "Sebat", english: "Seven (7)", audio: "seh-BAHT" },
-      { amharic: "ስምንት", transliteration: "Simint", english: "Eight (8)", audio: "sih-MINT" },
-      { amharic: "ዘጠኝ", transliteration: "Zetegn", english: "Nine (9)", audio: "zeh-TEÑ" },
-      { amharic: "አስር", transliteration: "Asir", english: "Ten (10)", audio: "ah-SIR" },
-      { amharic: "ሃያ", transliteration: "Haya", english: "Twenty (20)", audio: "HAH-yah" },
-      { amharic: "ሰላሳ", transliteration: "Selasa", english: "Thirty (30)", audio: "seh-LAH-sah" },
-      { amharic: "መቶ", transliteration: "Meto", english: "Hundred (100)", audio: "MEH-toh" }
-    ]
-  },
-  {
-    id: "essentials",
-    title: "መሠረታዊ — Essentials",
-    icon: "🗣️",
-    phrases: [
-      { amharic: "አዎ", transliteration: "Awo", english: "Yes", audio: "AH-woh" },
-      { amharic: "አይ", transliteration: "Ay", english: "No", audio: "eye" },
-      { amharic: "እባክህ", transliteration: "Ebakih", english: "Please (to a male)", audio: "eh-BAH-kih" },
-      { amharic: "እባክሽ", transliteration: "Ebakish", english: "Please (to a female)", audio: "eh-BAH-kish" },
-      { amharic: "ይቅርታ", transliteration: "Yikirta", english: "Sorry / Excuse me", audio: "yih-kir-TAH" },
-      { amharic: "ስሜ ... ነው", transliteration: "Sime ... new", english: "My name is ...", audio: "sih-MEH ... new" },
-      { amharic: "አልገባኝም", transliteration: "Algebangnm", english: "I don't understand", audio: "ahl-geh-BAÑM" },
-      { amharic: "እንግሊዝኛ ትናገራለህ?", transliteration: "Inglizigna tinageralehi?", english: "Do you speak English?", audio: "in-gli-ZIÑ-ah tih-nah-geh-RAH-leh" },
-      { amharic: "ደስ ብሎኛል", transliteration: "Des Bloñal", english: "Nice to meet you", audio: "dess BLOH-nyahl" }
-    ]
-  },
-  {
-    id: "food",
-    title: "ምግብ — Food & Drink",
-    icon: "🍲",
-    phrases: [
-      { amharic: "ውሃ", transliteration: "Wiha", english: "Water", audio: "wih-HA" },
-      { amharic: "ቡና", transliteration: "Buna", english: "Coffee", audio: "BOO-nah" },
-      { amharic: "ኢንጀራ", transliteration: "Injera", english: "Injera (flatbread)", audio: "in-JEH-rah" },
-      { amharic: "ምግብ", transliteration: "Migib", english: "Food", audio: "mih-GIB" },
-      { amharic: "ረሃብ ነው", transliteration: "Rehab new", english: "I am hungry", audio: "reh-HAHB new" },
-      { amharic: "ጠማ ነው", transliteration: "Tema new", english: "I am thirsty", audio: "teh-MAH new" },
-      { amharic: "ጣፋጭ ነው!", transliteration: "Tafach new!", english: "It's delicious!", audio: "tah-FAHCH new" },
-      { amharic: "ስብ", transliteration: "Sib", english: "Meat", audio: "sib" },
-      { amharic: "ፍረ", transliteration: "Fire", english: "Fruit", audio: "FIR-eh" },
-      { amharic: "ዘይት", transliteration: "Zait", english: "Oil", audio: "ZAH-it" }
-    ]
-  },
-  {
-    id: "family",
-    title: "ቤተሰብ — Family",
-    icon: "👨‍👩‍👧‍👦",
-    phrases: [
-      { amharic: "እማማ", transliteration: "Imama", english: "Mother", audio: "ih-MAH-mah" },
-      { amharic: "አባባ", transliteration: "Ababa", english: "Father", audio: "ah-BAH-bah" },
-      { amharic: "ወንድም", transliteration: "Wendim", english: "Brother", audio: "wen-DIM" },
-      { amharic: "እህት", transliteration: "Ihit", english: "Sister", audio: "ih-HIT" },
-      { amharic: "ልጅ", transliteration: "Lij", english: "Child", audio: "lij" },
-      { amharic: "ቤተሰብ", transliteration: "Beteseb", english: "Family", audio: "beh-teh-SEB" },
-      { amharic: "ድንግል", transliteration: "Dingel", english: "Daughter", audio: "DIN-gel" },
-      { amharic: "ወንድ", transliteration: "Wend", english: "Son", audio: "wend" },
-      { amharic: "ጓደኛ", transliteration: "Gwadeña", english: "Friend", audio: "GWAH-den-yah" }
-    ]
-  }
+  { id:"greetings", title:"ሰላም — Greetings", icon:"&#128075;", phrases:[
+    {am:"ሰላም", tr:"Selam", en:"Hello / Peace", audio:"seh-LAHM"},
+    {am:"እንደምን ነህ?", tr:"Endemin neh?", en:"How are you? (to male)", audio:"en-deh-MIN neh"},
+    {am:"እንደምን ነሽ?", tr:"Endemin nesh?", en:"How are you? (to female)", audio:"en-deh-MIN nesh"},
+    {am:"ደህና ነኝ", tr:"Dehna negn", en:"I am fine", audio:"DEH-nah negn"},
+    {am:"አመሰግናለሁ", tr:"Ameseginalehu", en:"Thank you", audio:"ah-meh-seh-gih-NAH-leh-hu"},
+    {am:"ደህና ሁን", tr:"Dehna hun", en:"Goodbye (to male)", audio:"DEH-nah hoon"},
+    {am:"ደህና ሁኚ", tr:"Dehna hugni", en:"Goodbye (to female)", audio:"DEH-nah hoo-NYI"},
+    {am:"እንደምን አደርክ?", tr:"Endemin aderk?", en:"Good morning (to male)", audio:"en-deh-MIN ah-derk"},
+    {am:"እንደምን አደርሽ?", tr:"Endemin adersh?", en:"Good morning (to female)", audio:"en-deh-MIN ah-dersh"},
+    {am:"እንደምን ዋልክ?", tr:"Endemin walk?", en:"Good afternoon (to male)", audio:"en-deh-MIN wahk"},
+    {am:"መልካም ቀን", tr:"Melkam ken", en:"Have a good day", audio:"mel-KAHM ken"}
+  ]},
+  { id:"numbers", title:"ቁጥሮች — Numbers", icon:"&#128290;", phrases:[
+    {am:"አንድ", tr:"And", en:"One (1)", audio:"ahnd"},
+    {am:"ሁለት", tr:"Hulet", en:"Two (2)", audio:"hoo-LET"},
+    {am:"ሦስት", tr:"Sost", en:"Three (3)", audio:"sohst"},
+    {am:"አራት", tr:"Arat", en:"Four (4)", audio:"ah-RAHT"},
+    {am:"አምስት", tr:"Amist", en:"Five (5)", audio:"ah-MIST"},
+    {am:"ስድስት", tr:"Sidist", en:"Six (6)", audio:"sih-DIST"},
+    {am:"ሰባት", tr:"Sebat", en:"Seven (7)", audio:"seh-BAHT"},
+    {am:"ስምንት", tr:"Simint", en:"Eight (8)", audio:"sih-MINT"},
+    {am:"ዘጠኝ", tr:"Zetegn", en:"Nine (9)", audio:"zeh-TEGN"},
+    {am:"አስር", tr:"Asir", en:"Ten (10)", audio:"ah-SIR"},
+    {am:"ሃያ", tr:"Haya", en:"Twenty (20)", audio:"HAH-yah"},
+    {am:"ሃምሳ", tr:"Hamsa", en:"Fifty (50)", audio:"HAM-sah"},
+    {am:"መቶ", tr:"Meto", en:"One hundred (100)", audio:"MEH-toh"}
+  ]},
+  { id:"essentials", title:"መሠረታዊ — Essentials", icon:"&#128483;", phrases:[
+    {am:"አዎ", tr:"Awo", en:"Yes", audio:"AH-woh"},
+    {am:"አይ", tr:"Ay", en:"No", audio:"eye"},
+    {am:"እባክህ", tr:"Ebakih", en:"Please (to male)", audio:"eh-BAH-kih"},
+    {am:"እባክሽ", tr:"Ebakish", en:"Please (to female)", audio:"eh-BAH-kish"},
+    {am:"ይቅርታ", tr:"Yikirta", en:"Sorry / Excuse me", audio:"yih-kir-TAH"},
+    {am:"ስሜ ... ነው", tr:"Sime ... new", en:"My name is ...", audio:"sih-MEH ... new"},
+    {am:"አልገባኝም", tr:"Algebagnm", en:"I do not understand", audio:"ahl-geh-BAGNM"},
+    {am:"ዋጋው ስንት ነው?", tr:"Wagaw sint new?", en:"How much does it cost?", audio:"WAH-gah-oo sint new"},
+    {am:"የት ነው?", tr:"Yet new?", en:"Where is it?", audio:"yet new"}
+  ]},
+  { id:"food", title:"ምግብ — Food and Drink", icon:"&#127858;", phrases:[
+    {am:"ውሃ", tr:"Wiha", en:"Water", audio:"wih-HA"},
+    {am:"ቡና", tr:"Buna", en:"Coffee", audio:"BOO-nah"},
+    {am:"እንጀራ", tr:"Injera", en:"Injera (flatbread)", audio:"in-JEH-rah"},
+    {am:"ምግብ", tr:"Migib", en:"Food", audio:"mih-GIB"},
+    {am:"ረሃብ ነው", tr:"Rehab new", en:"I am hungry", audio:"reh-HAHB new"},
+    {am:"ጠማ ነው", tr:"Tema new", en:"I am thirsty", audio:"teh-MAH new"},
+    {am:"ጣፋጭ ነው!", tr:"Tafach new!", en:"It is delicious!", audio:"tah-FAHCH new"},
+    {am:"ዳቦ", tr:"Dabo", en:"Bread", audio:"DAH-boh"},
+    {am:"ስጋ", tr:"Siga", en:"Meat", audio:"SIH-gah"},
+    {am:"አትክልት", tr:"Atikilt", en:"Vegetables", audio:"ah-tih-KILT"}
+  ]},
+  { id:"family", title:"ቤተሰብ — Family", icon:"&#128106;", phrases:[
+    {am:"እማማ", tr:"Imama", en:"Mother", audio:"ih-MAH-mah"},
+    {am:"አባባ", tr:"Ababa", en:"Father", audio:"ah-BAH-bah"},
+    {am:"ወንድም", tr:"Wendim", en:"Brother", audio:"wen-DIM"},
+    {am:"እህት", tr:"Ihit", en:"Sister", audio:"ih-HIT"},
+    {am:"ልጅ", tr:"Lij", en:"Child", audio:"lij"},
+    {am:"ቤተሰብ", tr:"Beteseb", en:"Family", audio:"beh-teh-SEB"},
+    {am:"ባል", tr:"Bal", en:"Husband", audio:"bahl"},
+    {am:"ሚስት", tr:"Mist", en:"Wife", audio:"mist"},
+    {am:"ወዳጅ", tr:"Wedaj", en:"Friend", audio:"weh-DAHJ"}
+  ]}
 ];
-
-var currentView = 'home';
-var flippedCards = {};
-
-function goView(view) {
-  currentView = view;
-  document.getElementById('homeView').classList.add('view-hidden');
-  document.getElementById('lessonView').classList.add('view-hidden');
-  document.getElementById('chatView').classList.add('view-hidden');
-  document.getElementById('quizView').classList.add('view-hidden');
-  document.getElementById('alphabetView').classList.add('view-hidden');
-  
-  if (view === 'chat') {
-    document.getElementById('chatView').classList.remove('view-hidden');
-  } else if (view === 'quiz') {
-    document.getElementById('quizView').classList.remove('view-hidden');
-  } else if (view === 'alphabet') {
-    document.getElementById('alphabetView').classList.remove('view-hidden');
+ 
+var QUIZ_BANK = [
+  {q:'What does "Selam" (ሰላም) mean?', opts:["Goodbye","Hello / Peace","Thank you","Water"], ans:"Hello / Peace", exp:"Selam is the most common Amharic greeting meaning Hello or Peace."},
+  {q:'How do you say "Water" in Amharic?', opts:["ቡና","ምግብ","ውሃ","እንጀራ"], ans:"ውሃ", exp:"ውሃ (Wiha) means Water."},
+  {q:'What does "Ameseginalehu" mean?', opts:["Hello","I am fine","Excuse me","Thank you"], ans:"Thank you", exp:"አመሰግናለሁ (Ameseginalehu) means Thank you."},
+  {q:'How do you say "I am fine"?', opts:["ሰላም","ደህና ነኝ","አዎ","ቡና"], ans:"ደህና ነኝ", exp:"ደህና ነኝ (Dehna negn) means I am fine."},
+  {q:'"Buna" means:', opts:["Tea","Injera","Coffee","Bread"], ans:"Coffee", exp:"ቡና (Buna) means Coffee. Ethiopia is the birthplace of coffee!"},
+  {q:'What number is "Sost"?', opts:["One","Two","Three","Four"], ans:"Three", exp:"ሦስት (Sost) means Three."},
+  {q:'How do you say "Mother"?', opts:["አባባ","ወንድም","እህት","እማማ"], ans:"እማማ", exp:"እማማ (Imama) means Mother."},
+  {q:'"Yikirta" means:', opts:["Please","Thank you","Sorry / Excuse me","Yes"], ans:"Sorry / Excuse me", exp:"ይቅርታ (Yikirta) means Sorry or Excuse me."},
+  {q:'What is "Asir"?', opts:["Eight","Nine","Ten","Seven"], ans:"Ten", exp:"አስር (Asir) means Ten."},
+  {q:'How do you say "It is delicious!"?', opts:["ውሃ ነው","ደህና ነኝ","ጣፋጭ ነው!","አልገባኝም"], ans:"ጣፋጭ ነው!", exp:"ጣፋጭ ነው! (Tafach new!) means It is delicious!"},
+  {q:'Amharic word order is:', opts:["Subject-Verb-Object","Verb-Subject-Object","Subject-Object-Verb","Object-Verb-Subject"], ans:"Subject-Object-Verb", exp:"Amharic is SOV: the verb always comes last."},
+  {q:'"Ine" (እኔ) means:', opts:["You","He","I","We"], ans:"I", exp:"እኔ (Ine) is the first person singular pronoun meaning I."},
+  {q:'Good afternoon to a male is:', opts:["እንደምን አደርክ?","እንደምን ዋልክ?","ደህና ሁን","ሰላም"], ans:"እንደምን ዋልክ?", exp:"እንደምን ዋልክ? (Endemin walk?) means How did you spend the day, used as Good afternoon."},
+  {q:'The Amharic script is called:', opts:["Arabic","Geez / Fidel","Cyrillic","Devanagari"], ans:"Geez / Fidel", exp:"Amharic uses the Geez script, also called Fidel (ፊደል)."},
+  {q:'"Beteseb" means:', opts:["Friend","Village","Family","House"], ans:"Family", exp:"ቤተሰብ (Beteseb) means Family."}
+];
+ 
+var ALPHABET = [
+  {label:"h (ha)", forms:["ሀ","ሁ","ሂ","ሃ","ሄ","ህ","ሆ"]},
+  {label:"l (le)", forms:["ለ","ሉ","ሊ","ላ","ሌ","ል","ሎ"]},
+  {label:"hh (hha)", forms:["ሐ","ሑ","ሒ","ሓ","ሔ","ሕ","ሖ"]},
+  {label:"m (me)", forms:["መ","ሙ","ሚ","ማ","ሜ","ም","ሞ"]},
+  {label:"s (sze)", forms:["ሠ","ሡ","ሢ","ሣ","ሤ","ሥ","ሦ"]},
+  {label:"r (re)", forms:["ረ","ሩ","ሪ","ራ","ሬ","ር","ሮ"]},
+  {label:"s (se)", forms:["ሰ","ሱ","ሲ","ሳ","ሴ","ስ","ሶ"]},
+  {label:"sh (she)", forms:["ሸ","ሹ","ሺ","ሻ","ሼ","ሽ","ሾ"]},
+  {label:"q (qe)", forms:["ቀ","ቁ","ቂ","ቃ","ቄ","ቅ","ቆ"]},
+  {label:"b (be)", forms:["በ","ቡ","ቢ","ባ","ቤ","ብ","ቦ"]},
+  {label:"v (ve)", forms:["ቨ","ቩ","ቪ","ቫ","ቬ","ቭ","ቮ"]},
+  {label:"t (te)", forms:["ተ","ቱ","ቲ","ታ","ቴ","ት","ቶ"]},
+  {label:"ch (che)", forms:["ቸ","ቹ","ቺ","ቻ","ቼ","ች","ቾ"]},
+  {label:"h (xe)", forms:["ኀ","ኁ","ኂ","ኃ","ኄ","ኅ","ኆ"]},
+  {label:"n (ne)", forms:["ነ","ኑ","ኒ","ና","ኔ","ን","ኖ"]},
+  {label:"ny (nye)", forms:["ኘ","ኙ","ኚ","ኛ","ኜ","ኝ","ኞ"]},
+  {label:"a (e)", forms:["አ","ኡ","ኢ","ኣ","ኤ","እ","ኦ"]},
+  {label:"k (ke)", forms:["ከ","ኩ","ኪ","ካ","ኬ","ክ","ኮ"]},
+  {label:"w (we)", forms:["ወ","ዉ","ዊ","ዋ","ዌ","ው","ዎ"]},
+  {label:"a (aa)", forms:["ዐ","ዑ","ዒ","ዓ","ዔ","ዕ","ዖ"]},
+  {label:"z (ze)", forms:["ዘ","ዙ","ዚ","ዛ","ዜ","ዝ","ዞ"]},
+  {label:"zh (zhe)", forms:["ዠ","ዡ","ዢ","ዣ","ዤ","ዥ","ዦ"]},
+  {label:"y (ye)", forms:["የ","ዩ","ዪ","ያ","ዬ","ይ","ዮ"]},
+  {label:"d (de)", forms:["ደ","ዱ","ዲ","ዳ","ዴ","ድ","ዶ"]},
+  {label:"j (je)", forms:["ጀ","ጁ","ጂ","ጃ","ጄ","ጅ","ጆ"]},
+  {label:"g (ge)", forms:["ገ","ጉ","ጊ","ጋ","ጌ","ግ","ጎ"]},
+  {label:"th (the)", forms:["ጠ","ጡ","ጢ","ጣ","ጤ","ጥ","ጦ"]},
+  {label:"ch (che)", forms:["ጨ","ጩ","ጪ","ጫ","ጬ","ጭ","ጮ"]},
+  {label:"ph (phe)", forms:["ጰ","ጱ","ጲ","ጳ","ጴ","ጵ","ጶ"]},
+  {label:"ts (tse)", forms:["ጸ","ጹ","ጺ","ጻ","ጼ","ጽ","ጾ"]},
+  {label:"tz (tze)", forms:["ፀ","ፁ","ፂ","ፃ","ፄ","ፅ","ፆ"]},
+  {label:"f (fe)", forms:["ፈ","ፉ","ፊ","ፋ","ፌ","ፍ","ፎ"]},
+  {label:"p (pe)", forms:["ፐ","ፑ","ፒ","ፓ","ፔ","ፕ","ፖ"]}
+];
+var VL = ["a (1st)","u (2nd)","i (3rd)","a (4th)","e (5th)","silent (6th)","o (7th)"];
+var NUMERALS = [{n:"1",am:"፩"},{n:"2",am:"፪"},{n:"3",am:"፫"},{n:"4",am:"፬"},{n:"5",am:"፭"},{n:"6",am:"፮"},{n:"7",am:"፯"},{n:"8",am:"፰"},{n:"9",am:"፱"},{n:"10",am:"፲"},{n:"20",am:"፳"},{n:"30",am:"፴"},{n:"40",am:"፵"},{n:"50",am:"፶"},{n:"60",am:"፷"},{n:"70",am:"፸"},{n:"80",am:"፹"},{n:"90",am:"፺"},{n:"100",am:"፻"},{n:"10000",am:"፼"}];
+ 
+var GRAMMAR_TABS = [
+  {id:"overview",    label:"Overview"},
+  {id:"pronouns",   label:"Pronouns"},
+  {id:"wordorder",  label:"Word Order"},
+  {id:"verbs",      label:"Verbs"},
+  {id:"nouns",      label:"Nouns and Gender"},
+  {id:"adjectives", label:"Adjectives"},
+  {id:"questions",  label:"Questions"},
+  {id:"negation",   label:"Negation"},
+  {id:"copula",     label:"To Be"},
+  {id:"possession", label:"Possession"},
+  {id:"numbers2",   label:"Numbers Grammar"}
+];
+ 
+var GRAMMAR_HTML = {
+overview: '<div class="gcard"><h3>About Amharic</h3><p>Amharic is a Semitic language in the same family as Arabic and Hebrew. It is the official language of Ethiopia and the second most spoken Semitic language in the world.</p><table class="gtable"><tr><th>Feature</th><th>Amharic</th><th>English contrast</th></tr><tr><td><strong>Word order</strong></td><td>Subject, Object, Verb</td><td>English is S-V-O</td></tr><tr><td><strong>Script</strong></td><td>Geez syllabary (Fidel), 231+ characters</td><td>Latin alphabet, 26 letters</td></tr><tr><td><strong>Gender</strong></td><td>Masculine / Feminine on verbs and adjectives</td><td>No grammatical gender</td></tr><tr><td><strong>Verbs</strong></td><td>Encode tense, person, number, gender</td><td>Simpler conjugation</td></tr><tr><td><strong>Definiteness</strong></td><td>Suffix added to noun</td><td>Separate word "the"</td></tr></table><div class="tip"><strong>Learner tip:</strong> Focus on SOV word order first. Once that clicks, everything else builds on it.</div></div>',
+ 
+pronouns: '<div class="gcard"><h3>Personal Pronouns</h3><p>Amharic has distinct pronouns for masculine and feminine in the 2nd and 3rd person.</p><table class="gtable"><tr><th>Person</th><th>Amharic</th><th>Translit.</th><th>English</th></tr><tr><td>1st sing.</td><td class="am">እኔ</td><td class="tr2">Ine</td><td class="en2">I</td></tr><tr><td>2nd sing. (m)</td><td class="am">አንተ</td><td class="tr2">Ante</td><td class="en2">You (male)</td></tr><tr><td>2nd sing. (f)</td><td class="am">አንቺ</td><td class="tr2">Anchi</td><td class="en2">You (female)</td></tr><tr><td>3rd sing. (m)</td><td class="am">እሱ</td><td class="tr2">Isu</td><td class="en2">He</td></tr><tr><td>3rd sing. (f)</td><td class="am">እሷ</td><td class="tr2">Iswa</td><td class="en2">She</td></tr><tr><td>1st plural</td><td class="am">እኛ</td><td class="tr2">Inya</td><td class="en2">We</td></tr><tr><td>2nd plural</td><td class="am">እናንተ</td><td class="tr2">Inante</td><td class="en2">You (plural)</td></tr><tr><td>3rd plural</td><td class="am">እነሱ</td><td class="tr2">Inesu</td><td class="en2">They</td></tr><tr><td>Formal</td><td class="am">እርስዎ</td><td class="tr2">Irswo</td><td class="en2">You (formal)</td></tr></table><div class="note"><strong>Cultural note:</strong> Using the formal Irswo with elders and strangers is a sign of respect.</div><div class="ex"><div class="ex-am">እኔ ተማሪ ነኝ</div><div class="ex-tr">Ine temari negn.</div><div class="ex-en">I am a student.</div></div></div>',
+ 
+wordorder: '<div class="gcard"><h3>Word Order: Subject, Object, Verb</h3><p>The single most important grammar rule: Amharic puts the verb at the END of the sentence.</p><table class="gtable"><tr><th>Language</th><th>Structure</th></tr><tr><td>English</td><td>I drink coffee (S-V-O)</td></tr><tr><td>Amharic</td><td>I coffee drink (S-O-V)</td></tr></table><div class="ex"><div class="ex-am">እኔ ቡና እጠጣለሁ</div><div class="ex-tr">Ine buna itetalehu.</div><div class="ex-en">I drink coffee. (lit: I coffee drink)</div></div><div class="ex"><div class="ex-am">እሷ መጽሐፍ አነበበች</div><div class="ex-tr">Iswa metsihaf anebebechi.</div><div class="ex-en">She read a book. (lit: She book read)</div></div><div class="tip"><strong>Memory trick:</strong> Amharic sentences build up to the verb. You set the scene (who, what) then deliver the action at the end.</div></div><div class="gcard"><h3>Modifiers come before the noun</h3><p>Adjectives and possessives precede the noun they modify.</p><div class="ex"><div class="ex-am">ቀይ ቤት</div><div class="ex-tr">Qey bet</div><div class="ex-en">Red house</div></div></div>',
+ 
+verbs: '<div class="gcard"><h3>Verb Basics</h3><p>Amharic verbs encode <strong>tense</strong>, <strong>person</strong>, <strong>number</strong>, and <strong>gender</strong> all in one word. The root is typically 3 consonants, similar to Arabic and Hebrew.</p></div><div class="gcard"><h3>Present Tense (to eat)</h3><table class="gtable"><tr><th>Person</th><th>Amharic</th><th>Translit.</th><th>English</th></tr><tr><td>I</td><td class="am">እበላለሁ</td><td class="tr2">Ibelalehu</td><td class="en2">I eat</td></tr><tr><td>You (m)</td><td class="am">ትበላለህ</td><td class="tr2">Tbelalehi</td><td class="en2">You eat (m)</td></tr><tr><td>You (f)</td><td class="am">ትበያለሽ</td><td class="tr2">Tbelaleshi</td><td class="en2">You eat (f)</td></tr><tr><td>He</td><td class="am">ይበላል</td><td class="tr2">Yibelal</td><td class="en2">He eats</td></tr><tr><td>She</td><td class="am">ትበላለች</td><td class="tr2">Tbelalechi</td><td class="en2">She eats</td></tr><tr><td>We</td><td class="am">እንበላለን</td><td class="tr2">Inbelalen</td><td class="en2">We eat</td></tr><tr><td>They</td><td class="am">ይበላሉ</td><td class="tr2">Yibelalu</td><td class="en2">They eat</td></tr></table></div><div class="gcard"><h3>Past Tense (to drink, teta)</h3><table class="gtable"><tr><th>Person</th><th>Amharic</th><th>Translit.</th><th>English</th></tr><tr><td>I</td><td class="am">ጠጣሁ</td><td class="tr2">tetahu</td><td class="en2">I drank</td></tr><tr><td>You (m)</td><td class="am">ጠጣህ</td><td class="tr2">tetah</td><td class="en2">You drank (m)</td></tr><tr><td>You (f)</td><td class="am">ጠጣሽ</td><td class="tr2">tetash</td><td class="en2">You drank (f)</td></tr><tr><td>He</td><td class="am">ጠጣ</td><td class="tr2">teta</td><td class="en2">He drank</td></tr><tr><td>She</td><td class="am">ጠጣች</td><td class="tr2">tetach</td><td class="en2">She drank</td></tr><tr><td>We</td><td class="am">ጠጣን</td><td class="tr2">tetan</td><td class="en2">We drank</td></tr><tr><td>They</td><td class="am">ጠጡ</td><td class="tr2">tetu</td><td class="en2">They drank</td></tr></table><div class="note"><strong>Pattern:</strong> -hu = I, -h = you (m), -sh = you (f), -ch = she. These repeat across most verbs.</div></div><div class="gcard"><h3>Common Verbs</h3><table class="gtable"><tr><th>Meaning</th><th>Infinitive</th><th>Past (he)</th></tr><tr><td>To go</td><td class="am">መሄድ</td><td class="tr2">ሄደ (hede)</td></tr><tr><td>To come</td><td class="am">መምጣት</td><td class="tr2">መጣ (meta)</td></tr><tr><td>To see</td><td class="am">ማየት</td><td class="tr2">አየ (aye)</td></tr><tr><td>To want</td><td class="am">መፈለግ</td><td class="tr2">ፈለገ (felege)</td></tr><tr><td>To give</td><td class="am">መስጠት</td><td class="tr2">ሰጠ (sete)</td></tr><tr><td>To love</td><td class="am">መውደድ</td><td class="tr2">ወደደ (wedede)</td></tr></table></div>',
+ 
+nouns: '<div class="gcard"><h3>Nouns and Grammatical Gender</h3><p>Amharic nouns are either <strong>masculine</strong> or <strong>feminine</strong>. Gender is mostly memorised, but nouns for male people are masculine and females are feminine.</p><div class="tip"><strong>Good news:</strong> Gender mainly matters for the definite article and possessive suffixes, not for every use of the noun.</div></div><div class="gcard"><h3>Definite Article ("the")</h3><p>The definite article is added as a <strong>suffix</strong> to the noun. There is no indefinite article (a/an).</p><table class="gtable"><tr><th>Gender</th><th>Suffix</th><th>Example (bet = house)</th><th>Meaning</th></tr><tr><td>Masculine</td><td><span class="pill">-u</span></td><td class="am">ቤቱ</td><td class="en2">the house</td></tr><tr><td>Feminine</td><td><span class="pill pu">-wa</span></td><td class="am">ቤቷ</td><td class="en2">the house (fem)</td></tr></table><div class="ex"><div class="ex-am">ልጁ ሄደ</div><div class="ex-tr">Liju hede.</div><div class="ex-en">The boy went. (-u = the, masculine)</div></div></div><div class="gcard"><h3>Plural Formation</h3><p>The most common plural suffix is <strong>-och</strong> added to the noun.</p><table class="gtable"><tr><th>Singular</th><th>Plural</th></tr><tr><td class="am">ቤት (bet) house</td><td class="am">ቤቶች (betoch) houses</td></tr><tr><td class="am">ሰው (sew) person</td><td class="am">ሰዎች (sewoch) people</td></tr><tr><td class="am">ልጅ (lij) child</td><td class="am">ልጆች (lijoch) children</td></tr></table></div>',
+ 
+adjectives: '<div class="gcard"><h3>Adjectives</h3><p>Adjectives come <strong>before</strong> the noun, same as English. Useful pattern: <em>Adjective + ነው (new)</em> = "X is Y".</p><table class="gtable"><tr><th>Amharic</th><th>Translit.</th><th>English</th></tr><tr><td class="am">ትልቅ</td><td class="tr2">Tiliq</td><td class="en2">Big / Large</td></tr><tr><td class="am">ትንሽ</td><td class="tr2">Tinish</td><td class="en2">Small</td></tr><tr><td class="am">ቀይ</td><td class="tr2">Qey</td><td class="en2">Red</td></tr><tr><td class="am">ነጭ</td><td class="tr2">Nech</td><td class="en2">White</td></tr><tr><td class="am">ጥቁር</td><td class="tr2">Tiqur</td><td class="en2">Black</td></tr><tr><td class="am">ጥሩ</td><td class="tr2">Tiru</td><td class="en2">Good</td></tr><tr><td class="am">መጥፎ</td><td class="tr2">Metfo</td><td class="en2">Bad</td></tr><tr><td class="am">አዲስ</td><td class="tr2">Addis</td><td class="en2">New</td></tr><tr><td class="am">ሙቅ</td><td class="tr2">Muq</td><td class="en2">Hot</td></tr><tr><td class="am">ቀዝቃዛ</td><td class="tr2">Qezqaza</td><td class="en2">Cold</td></tr></table><div class="ex"><div class="ex-am">ቡናው ሙቅ ነው</div><div class="ex-tr">Bunaw muq new.</div><div class="ex-en">The coffee is hot.</div></div></div>',
+ 
+questions: '<div class="gcard"><h3>Forming Questions</h3><p><strong>Yes/No questions:</strong> use rising intonation, or add the suffix <span class="pill">-n</span> to the verb.</p><div class="ex"><div class="ex-am">ቡና ትጠጣለህ?</div><div class="ex-tr">Buna titetalehi?</div><div class="ex-en">Do you drink coffee?</div></div><p><strong>Wh- questions:</strong> use a question word at the start.</p><table class="gtable"><tr><th>Question</th><th>Amharic</th><th>Translit.</th></tr><tr><td>What?</td><td class="am">ምን?</td><td class="tr2">Min?</td></tr><tr><td>Who?</td><td class="am">ማን?</td><td class="tr2">Man?</td></tr><tr><td>Where?</td><td class="am">የት?</td><td class="tr2">Yet?</td></tr><tr><td>When?</td><td class="am">መቼ?</td><td class="tr2">Meche?</td></tr><tr><td>Why?</td><td class="am">ለምን?</td><td class="tr2">Lemin?</td></tr><tr><td>How?</td><td class="am">እንዴት?</td><td class="tr2">Indet?</td></tr><tr><td>How much?</td><td class="am">ስንት?</td><td class="tr2">Sint?</td></tr></table><div class="ex"><div class="ex-am">ስምህ ማን ነው?</div><div class="ex-tr">Simih man new?</div><div class="ex-en">What is your name?</div></div></div>',
+ 
+negation: '<div class="gcard"><h3>Negation</h3><p><strong>Past tense:</strong> add prefix <span class="pill">al-</span> and suffix <span class="pill">-m</span> to the verb.</p><div class="ex"><div class="ex-am">ሄደ &rarr; አልሄደም</div><div class="ex-tr">Hede &rarr; Alhededim</div><div class="ex-en">He went &rarr; He did not go</div></div><p><strong>Present tense:</strong> add prefix <span class="pill">ayi-</span> and suffix <span class="pill">-m</span>.</p><div class="ex"><div class="ex-am">ይሄዳል &rarr; አይሄድም</div><div class="ex-tr">Yihedal &rarr; Ayihedim</div><div class="ex-en">He goes &rarr; He does not go</div></div><div class="tip"><strong>Key pattern:</strong> Almost all negatives in Amharic end with <strong>-m</strong>. A word ending in -m is often a negation.</div><table class="gtable"><tr><th>Phrase</th><th>Amharic</th><th>Translit.</th></tr><tr><td>I do not know</td><td class="am">አላውቅም</td><td class="tr2">Alawqim</td></tr><tr><td>I do not understand</td><td class="am">አልገባኝም</td><td class="tr2">Algebagnm</td></tr><tr><td>No problem</td><td class="am">ምንም አይደለም</td><td class="tr2">Minim ayidelem</td></tr></table></div>',
+ 
+copula: '<div class="gcard"><h3>The Verb "To Be"</h3><p>The most common form is <strong>ነው (new)</strong>. It changes by person and gender.</p><table class="gtable"><tr><th>Subject</th><th>To be</th><th>Translit.</th></tr><tr><td>I am</td><td class="am">ነኝ</td><td class="tr2">negn</td></tr><tr><td>You are (m)</td><td class="am">ነህ</td><td class="tr2">neh</td></tr><tr><td>You are (f)</td><td class="am">ነሽ</td><td class="tr2">nesh</td></tr><tr><td>He / It is</td><td class="am">ነው</td><td class="tr2">new</td></tr><tr><td>She is</td><td class="am">ናት</td><td class="tr2">nat</td></tr><tr><td>We are</td><td class="am">ነን</td><td class="tr2">nen</td></tr><tr><td>They are</td><td class="am">ናቸው</td><td class="tr2">nachew</td></tr></table><div class="note"><strong>Why neh vs nesh matters:</strong> እንደምን ነህ? is for a male; እንደምን ነሽ? is for a female. Always match the form to the person you are speaking to.</div><div class="ex"><div class="ex-am">እሷ ሐኪም ናት</div><div class="ex-tr">Iswa hakim nat.</div><div class="ex-en">She is a doctor.</div></div></div>',
+ 
+possession: '<div class="gcard"><h3>Expressing Possession</h3><p>Possession is shown by adding a <strong>suffix to the noun</strong>. There is no separate word for "my" or "your".</p><table class="gtable"><tr><th>Possessive</th><th>Suffix</th><th>Example (bet)</th><th>Meaning</th></tr><tr><td>My</td><td><span class="pill">-e</span></td><td class="am">ቤቴ</td><td class="en2">My house</td></tr><tr><td>Your (m)</td><td><span class="pill">-ih</span></td><td class="am">ቤትህ</td><td class="en2">Your house (m)</td></tr><tr><td>Your (f)</td><td><span class="pill pu">-ish</span></td><td class="am">ቤትሽ</td><td class="en2">Your house (f)</td></tr><tr><td>His</td><td><span class="pill">-u</span></td><td class="am">ቤቱ</td><td class="en2">His house</td></tr><tr><td>Her</td><td><span class="pill pu">-wa</span></td><td class="am">ቤቷ</td><td class="en2">Her house</td></tr><tr><td>Our</td><td><span class="pill yl">-achin</span></td><td class="am">ቤታችን</td><td class="en2">Our house</td></tr></table><div class="tip"><strong>Shortcut:</strong> The suffix <strong>-e</strong> almost always means "my": ስሜ (my name), ቤቴ (my house), አባቴ (my father).</div><div class="ex"><div class="ex-am">ስሜ አበበ ነው</div><div class="ex-tr">Sime Abebe new.</div><div class="ex-en">My name is Abebe.</div></div></div>',
+ 
+numbers2: '<div class="gcard"><h3>Numbers 11 to 1000</h3><p>Numbers 11-19: ten + number.</p><table class="gtable"><tr><th>Number</th><th>Amharic</th><th>Translit.</th></tr><tr><td>11</td><td class="am">አስራ አንድ</td><td class="tr2">Asra and</td></tr><tr><td>12</td><td class="am">አስራ ሁለት</td><td class="tr2">Asra hulet</td></tr><tr><td>20</td><td class="am">ሃያ</td><td class="tr2">Haya</td></tr><tr><td>30</td><td class="am">ሰላሳ</td><td class="tr2">Selasa</td></tr><tr><td>40</td><td class="am">አርባ</td><td class="tr2">Arba</td></tr><tr><td>50</td><td class="am">ሃምሳ</td><td class="tr2">Hamsa</td></tr><tr><td>100</td><td class="am">መቶ</td><td class="tr2">Meto</td></tr><tr><td>1000</td><td class="am">ሺ</td><td class="tr2">Shi</td></tr></table></div><div class="gcard"><h3>Numbers in Use</h3><p>Numbers come <strong>before</strong> the noun. The noun stays singular.</p><div class="ex"><div class="ex-am">ሦስት ቡና</div><div class="ex-tr">Sost buna</div><div class="ex-en">Three coffees</div></div><div class="ex"><div class="ex-am">ዋጋው ሃምሳ ብር ነው</div><div class="ex-tr">Wagaw hamsa bir new.</div><div class="ex-en">The price is 50 birr.</div></div><div class="tip"><strong>Ethiopian time:</strong> Ethiopia uses a 12-hour clock starting at sunrise. Ethiopian hour 1 = 7am standard time.</div></div>'
+};
+ 
+var view = "home";
+var flipped = {};
+var quizState = null;
+var gramTab = "overview";
+ 
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+ 
+function go(v) { view = v; flipped = {}; render(); window.scrollTo(0,0); }
+function goLesson(id) { view = "lesson:" + id; flipped = {}; render(); window.scrollTo(0,0); }
+function goQuiz() { view = "quiz"; initQuiz(); render(); window.scrollTo(0,0); }
+function goGram() { view = "grammar"; render(); window.scrollTo(0,0); }
+function setGTab(id) { gramTab = id; updateGramTabs(); }
+ 
+function initQuiz() {
+  quizState = { qs: shuffle(QUIZ_BANK).slice(0,10), cur:0, score:0, selected:null, showResult:false, done:false };
+}
+function quizSel(opt) {
+  if (!quizState || quizState.showResult) return;
+  quizState.selected = opt;
+  quizState.showResult = true;
+  if (opt === quizState.qs[quizState.cur].ans) quizState.score++;
+  render();
+}
+function quizNext() {
+  if (!quizState) return;
+  if (quizState.cur + 1 >= quizState.qs.length) quizState.done = true;
+  else { quizState.cur++; quizState.selected = null; quizState.showResult = false; }
+  render();
+}
+ 
+function updateGramTabs() {
+  var tabs = document.querySelectorAll(".gtab");
+  for (var i = 0; i < tabs.length; i++) {
+    if (tabs[i].getAttribute("data-tab") === gramTab) tabs[i].className = "gtab on";
+    else tabs[i].className = "gtab";
+  }
+  var secs = document.querySelectorAll(".gsec");
+  for (var j = 0; j < secs.length; j++) {
+    if (secs[j].getAttribute("data-sec") === gramTab) secs[j].className = "gsec on";
+    else secs[j].className = "gsec";
   }
 }
-
-function goHome() {
-  currentView = 'home';
-  document.getElementById('homeView').classList.remove('view-hidden');
-  document.getElementById('lessonView').classList.add('view-hidden');
-  document.getElementById('chatView').classList.add('view-hidden');
-  document.getElementById('quizView').classList.add('view-hidden');
-  document.getElementById('alphabetView').classList.add('view-hidden');
+ 
+function render() {
+  var app = document.getElementById("app");
+  app.innerHTML = buildPage();
+  document.getElementById("hdrBtn").onclick = function() { go("home"); };
+  var flips = document.querySelectorAll("[data-flip]");
+  for (var i = 0; i < flips.length; i++) {
+    flips[i].onclick = function() {
+      var k = this.getAttribute("data-flip");
+      flipped[k] = !flipped[k];
+      render();
+    };
+  }
 }
-
-function goLesson(index) {
-  currentView = 'lesson';
-  var lesson = LESSONS[index];
-  flippedCards = {};
-  
-  var html = '<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">';
-  html += '<span style="font-size: 36px;">' + lesson.icon + '</span>';
-  html += '<h2 style="margin: 0; font-size: 22px; font-family: Noto Serif Ethiopic, serif; color: var(--dark-text);">' + lesson.title + '</h2>';
+ 
+function buildPage() {
+  if (view === "home") return buildHome();
+  if (view.indexOf("lesson:") === 0) return buildLesson(view.slice(7));
+  if (view === "quiz") return buildQuiz();
+  if (view === "alphabet") return buildAlpha();
+  if (view === "grammar") return buildGrammar();
+  return buildHome();
+}
+ 
+function backBtn() {
+  return '<button class="back" onclick="go(\'home\')">&#8592; Back to home</button>';
+}
+ 
+function buildHome() {
+  var html = '<div class="welcome">'
+    + '<h2>እንኳን ደህና መጡ!</h2>'
+    + '<div class="sub">Enkwan dehna mettu! &mdash; Welcome!</div>'
+    + '<p>Amharic is the official language of Ethiopia, spoken by over 50 million people. Explore lessons, grammar, the alphabet, and quizzes &mdash; all fully offline, no account or internet needed.</p>'
+    + '</div>';
+  html += '<div class="nav-grid">'
+    + '<div class="nav-card wide" onclick="goGram()">'
+    + '<div class="nav-icon">&#128218;</div>'
+    + '<div class="nav-title">Grammar Reference</div>'
+    + '<div class="nav-desc">Word order, verbs, pronouns, negation and more &mdash; fully offline</div>'
+    + '</div>'
+    + '<div class="nav-card" onclick="goQuiz()">'
+    + '<div class="nav-icon">&#128221;</div>'
+    + '<div class="nav-title">Quiz</div>'
+    + '<div class="nav-desc">Test your knowledge</div>'
+    + '</div>'
+    + '<div class="nav-card" onclick="go(\'alphabet\')">'
+    + '<div class="nav-icon">&#9997;&#65039;</div>'
+    + '<div class="nav-title">Fidel Script</div>'
+    + '<div class="nav-desc">Explore the Geez syllabary</div>'
+    + '</div>'
+    + '</div>';
+  html += '<p class="sec-title">&#128214; Vocabulary Lessons</p>';
+  for (var i = 0; i < LESSONS.length; i++) {
+    var l = LESSONS[i];
+    html += '<div class="lesson-row" onclick="goLesson(\'' + l.id + '\')">'
+      + '<span class="l-emoji">' + l.icon + '</span>'
+      + '<div><div class="l-name">' + l.title + '</div>'
+      + '<div class="l-count">' + l.phrases.length + ' phrases &mdash; tap to study</div></div>'
+      + '<span class="l-arr">&rarr;</span>'
+      + '</div>';
+  }
+  return html;
+}
+ 
+function buildLesson(id) {
+  var L = null;
+  for (var i = 0; i < LESSONS.length; i++) { if (LESSONS[i].id === id) { L = LESSONS[i]; break; } }
+  if (!L) return buildHome();
+  var html = backBtn()
+    + '<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">'
+    + '<span style="font-size:32px">' + L.icon + '</span>'
+    + '<h2 style="font-size:22px;font-weight:700;font-family:\'Noto Serif Ethiopic\',serif">' + L.title + '</h2>'
+    + '</div><div class="phrase-grid">';
+  for (var j = 0; j < L.phrases.length; j++) {
+    var p = L.phrases[j], k = id + "_" + j, f = !!flipped[k];
+    html += '<div class="pc' + (f ? " on" : "") + '" data-flip="' + k + '">'
+      + '<div class="pc-am">' + p.am + '</div>'
+      + '<div class="pc-tr">' + p.tr + '</div>';
+    if (f) {
+      html += '<div class="pc-reveal"><div class="pc-en">' + p.en + '</div>'
+        + '<div class="pc-audio">&#128266; ' + p.audio + '</div></div>';
+    } else {
+      html += '<div class="pc-hint">Tap to reveal</div>';
+    }
+    html += '</div>';
+  }
   html += '</div>';
-  
-  for (var i = 0; i < lesson.phrases.length; i++) {
-    var phrase = lesson.phrases[i];
-    var cardId = 'card-' + index + '-' + i;
-    html += '<div class="phrase-card" id="' + cardId + '" onclick="toggleCard(\'' + cardId + '\')">';
-    html += '<div class="phrase-amharic">' + phrase.amharic + '</div>';
-    html += '<div class="phrase-transliteration">' + phrase.transliteration + '</div>';
-    html += '<div id="' + cardId + '-flipped" class="phrase-flipped" style="display: none;">';
-    html += '<div class="phrase-english">' + phrase.english + '</div>';
-    html += '<div class="phrase-audio">🔊 ' + phrase.audio + '</div>';
-    html += '</div>';
-    html += '<div class="phrase-hint">Tap to reveal meaning</div>';
-    html += '</div>';
-  }
-  
-  document.getElementById('lessonContent').innerHTML = html;
-  
-  document.getElementById('homeView').classList.add('view-hidden');
-  document.getElementById('lessonView').classList.remove('view-hidden');
+  return html;
 }
-
-function toggleCard(cardId) {
-  var flipped = document.getElementById(cardId + '-flipped');
-  var card = document.getElementById(cardId);
-  
-  if (flippedCards[cardId]) {
-    flipped.style.display = 'none';
-    flippedCards[cardId] = false;
-    card.querySelector('.phrase-hint').innerText = 'Tap to reveal meaning';
-  } else {
-    flipped.style.display = 'block';
-    flippedCards[cardId] = true;
-    card.querySelector('.phrase-hint').innerText = 'Tap to collapse';
+ 
+function buildQuiz() {
+  if (!quizState) return "";
+  var q = quizState;
+  if (q.done) {
+    var pct = Math.round((q.score / q.qs.length) * 100);
+    var em = pct >= 80 ? "&#127881;" : pct >= 50 ? "&#128077;" : "&#128170;";
+    return backBtn()
+      + '<div class="rbox"><div class="rem">' + em + '</div>'
+      + '<div class="rtitle">Quiz complete!</div>'
+      + '<div class="rsub">You scored <strong style="color:var(--green)">' + q.score + '</strong> out of ' + q.qs.length + ' (' + pct + '%)</div>'
+      + '<div class="brow"><button class="bgr" onclick="goQuiz()">Try again</button>'
+      + '<button class="bou" onclick="go(\'home\')">Back to home</button></div></div>';
   }
+  var cur = q.qs[q.cur];
+  var pctW = Math.round(((q.cur + 1) / q.qs.length) * 100);
+  var html = backBtn()
+    + '<div class="qhdr"><span class="q-ctr">Question ' + (q.cur+1) + ' of ' + q.qs.length + '</span>'
+    + '<span class="q-scr">Score: ' + q.score + '</span></div>'
+    + '<div class="pbar"><div class="pfill" style="width:' + pctW + '%"></div></div>'
+    + '<div class="qcard"><p class="qtext">' + cur.q + '</p></div>';
+  for (var oi = 0; oi < cur.opts.length; oi++) {
+    var opt = cur.opts[oi];
+    var cls = "";
+    if (q.showResult) { if (opt === cur.ans) cls = " ok"; else if (opt === q.selected) cls = " no"; }
+    var ic = q.showResult ? (opt === cur.ans ? "&#9989; " : (opt === q.selected ? "&#10060; " : "")) : "";
+    var safeOpt = opt.replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+    html += '<button class="opt' + cls + '"' + (q.showResult ? " disabled" : "") + ' onclick="quizSel(\'' + safeOpt + '\')">' + ic + opt + '</button>';
+  }
+  if (q.showResult) {
+    html += '<div class="expbox"><div class="explbl">' + (q.selected === cur.ans ? "&#9989; Correct!" : "&#10060; Not quite") + '</div>'
+      + '<div class="exptxt">' + cur.exp + '</div>'
+      + '<button class="nbtn" onclick="quizNext()">' + (q.cur + 1 >= q.qs.length ? "See results" : "Next &rarr;") + '</button></div>';
+  }
+  return html;
 }
+ 
+function buildAlpha() {
+  var html = backBtn()
+    + '<h2 style="font-size:22px;font-weight:700;font-family:\'Noto Serif Ethiopic\',serif;margin-bottom:10px">Fidel &mdash; The Amharic Script <span class="alpha-count">' + ALPHABET.length + ' consonants</span></h2>'
+    + '<p class="alpha-intro">Amharic uses the Geez script (Fidel), a syllabary where each character is a consonant plus a vowel. Each of the ' + ALPHABET.length + ' base consonants has 7 forms for 7 vowel sounds &mdash; over 230 characters in total. The first form (green) is the base. Tap or hover any character to enlarge it.</p>'
+    + '<div class="atw"><table class="at"><thead><tr><th>Base</th>';
+  for (var v = 0; v < VL.length; v++) html += '<th>' + VL[v] + '</th>';
+  html += '</tr></thead><tbody>';
+  for (var r = 0; r < ALPHABET.length; r++) {
+    html += '<tr><td>' + ALPHABET[r].label + '</td>';
+    for (var c = 0; c < ALPHABET[r].forms.length; c++) {
+      html += '<td><span class="fc' + (c === 0 ? " f0" : "") + '">' + ALPHABET[r].forms[c] + '</span></td>';
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table></div>';
+ 
+  html += '<p class="num-title">&#128290; Amharic Numerals</p>';
+  html += '<p class="num-intro">Amharic has its own numeral system, distinct from Arabic numerals. Each number has two small lines on the top and bottom that distinguish it from letters.</p>';
+  html += '<div class="num-grid">';
+  for (var n = 0; n < NUMERALS.length; n++) {
+    html += '<div class="num-cell"><div class="num-am">' + NUMERALS[n].am + '</div><div class="num-val">' + NUMERALS[n].n + '</div></div>';
+  }
+  html += '</div>';
+  return html;
+}
+ 
+function buildGrammar() {
+  var html = backBtn()
+    + '<h2 style="font-size:22px;font-weight:700;margin-bottom:6px">&#128218; Amharic Grammar Reference</h2>'
+    + '<p style="font-size:14px;color:var(--muted);margin-bottom:18px;line-height:1.6">Tap any topic to explore. Fully offline &mdash; no internet needed.</p>'
+    + '<div class="grammar-nav">';
+  for (var t = 0; t < GRAMMAR_TABS.length; t++) {
+    var tab = GRAMMAR_TABS[t];
+    html += '<div class="gtab' + (gramTab === tab.id ? " on" : "") + '" data-tab="' + tab.id + '" onclick="setGTab(\'' + tab.id + '\')">' + tab.label + '</div>';
+  }
+  html += '</div>';
+  for (var s = 0; s < GRAMMAR_TABS.length; s++) {
+    var sec = GRAMMAR_TABS[s];
+    html += '<div class="gsec' + (gramTab === sec.id ? " on" : "") + '" data-sec="' + sec.id + '">' + (GRAMMAR_HTML[sec.id] || "") + '</div>';
+  }
+  return html;
+}
+ 
+render();
 </script>
-
 </body>
 </html>
