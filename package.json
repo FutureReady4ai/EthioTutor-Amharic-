@@ -1,0 +1,32 @@
+{
+  "name": "ethioputor-amharic",
+  "version": "1.0.0",
+  "description": "Amharic Language Learning Platform - Learn Fidel script, vocabulary, grammar, and more. Fully offline.",
+  "main": "index.html",
+  "scripts": {
+    "start": "vercel dev",
+    "build": "echo 'Static site - no build needed'"
+  },
+  "keywords": [
+    "amharic",
+    "ethiopian",
+    "language",
+    "learning",
+    "fidel",
+    "geez",
+    "script",
+    "tutor",
+    "education",
+    "offline"
+  ],
+  "author": "EthioTutor",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YourUsername/ethioputor-amharic"
+  },
+  "homepage": "https://ethiotutor.com",
+  "bugs": {
+    "url": "https://github.com/YourUsername/ethioputor-amharic/issues"
+  }
+}
