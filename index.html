@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>የኢትዮጵያ ሪፖርተር — የቢዝነስ ዜናዎች</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@400;600;700&family=Noto+Sans+Ethiopic:wght@300;400;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0a05;
+    --surface: #161008;
+    --surface2: #1e1608;
+    --border: #3a2e10;
+    --gold: #d4960a;
+    --gold2: #f0b429;
+    --green: #2e7d4f;
+    --green2: #3aaa68;
+    --red: #c0392b;
+    --text: #f0e8d0;
+    --muted: #8a7a50;
+    --rec: #e74c3c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans Ethiopic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    direction: ltr;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 40% at 15% 0%, rgba(212,150,10,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 85% 90%, rgba(46,125,79,0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .studio {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .flag-strip {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 10px;
+  }
+  .flag-strip div { flex: 1; }
+  .flag-green { background: #078930; }
+  .flag-yellow { background: #FCDD09; }
+  .flag-red { background: #DA121A; }
+
+  .badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: var(--gold2);
+    border: 1px solid var(--gold);
+    padding: 0.25rem 0.8rem;
+    border-radius: 2rem;
+    margin-bottom: 0.9rem;
+    opacity: 0.85;
+  }
+
+  .header h1 {
+    font-family: 'Noto Serif Ethiopic', serif;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--gold2);
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 2px 20px rgba(212,150,10,0.3);
+  }
+
+  .header .sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .controls-bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    padding: 1rem 1.3rem;
+    margin-bottom: 1.2rem;
+    animation: fadeUp 0.7s ease 0.15s both;
+  }
+
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+  .speed-group label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .speed-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .speed-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .speed-btn.active { background: var(--gold); border-color: var(--gold); color: #000; font-weight: 600; }
+
+  .play-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+
+  .btn-circle {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+  .btn-circle:hover { border-color: var(--gold); color: var(--gold); transform: scale(1.08); }
+
+  .btn-play {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, var(--gold), #e8a500);
+    color: #000;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    transition: all 0.25s;
+    box-shadow: 0 0 22px rgba(212,150,10,0.45);
+  }
+  .btn-play:hover { transform: scale(1.1); box-shadow: 0 0 34px rgba(212,150,10,0.65); }
+  .btn-play:active { transform: scale(0.96); }
+
+  .voice-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  .voice-group label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .voice-select {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Noto Sans Ethiopic', sans-serif;
+    font-size: 0.76rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    outline: none;
+    max-width: 160px;
+  }
+  .voice-select:focus { border-color: var(--gold); }
+
+  .waveform-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    padding: 1rem 1.3rem;
+    margin-bottom: 1.2rem;
+    animation: fadeUp 0.7s ease 0.25s both;
+  }
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+  }
+  .time-display {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .time-display span { color: var(--text); }
+  .progress-track {
+    width: 100%; height: 5px;
+    background: var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 0.9rem;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--green2));
+    border-radius: 3px;
+    transition: width 0.1s linear;
+    position: relative;
+  }
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    right: -5px; top: 50%;
+    transform: translateY(-50%);
+    width: 11px; height: 11px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(212,150,10,0.5);
+  }
+  .waveform {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 40px;
+  }
+  .wave-bar {
+    flex: 1;
+    background: var(--border);
+    border-radius: 2px;
+    transition: background 0.25s;
+  }
+  .wave-bar.active { background: var(--gold2); }
+  .wave-bar.passed { background: var(--gold); opacity: 0.45; }
+
+  .record-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    padding: 1rem 1.3rem;
+    margin-bottom: 1.2rem;
+    animation: fadeUp 0.7s ease 0.3s both;
+  }
+  .record-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 0.8rem;
+  }
+  .record-title {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 600;
+    font-size: 0.88rem;
+  }
+  .rec-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all 0.3s;
+  }
+  .rec-dot.live { background: var(--rec); box-shadow: 0 0 10px var(--rec); animation: pulse 1s infinite; }
+
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(0.82)} }
+
+  .record-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .btn-rec {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 0.45rem;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans Ethiopic', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .btn-rec-start { background: var(--rec); color: #fff; }
+  .btn-rec-start:hover { background: #c0392b; box-shadow: 0 0 14px rgba(231,76,60,0.4); }
+  .btn-rec-stop { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+  .btn-rec-stop:hover { border-color: var(--gold); color: var(--gold); }
+  .btn-rec-dl { background: var(--green2); color: #000; font-weight: 600; }
+  .btn-rec-dl:hover { box-shadow: 0 0 14px rgba(58,170,104,0.4); }
+  .btn-rec:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .recordings-list { display: flex; flex-direction: column; gap: 0.45rem; }
+  .recording-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.8rem;
+    animation: fadeUp 0.3s ease;
+  }
+  .rec-name {
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+    font-size: 0.72rem;
+    flex-shrink: 0;
+  }
+  .recording-item audio { flex: 2; height: 26px; accent-color: var(--gold); }
+  .btn-dl-item {
+    background: none;
+    border: 1px solid var(--green2);
+    color: var(--green2);
+    padding: 0.22rem 0.55rem;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    font-size: 0.72rem;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .btn-dl-item:hover { background: var(--green2); color: #000; }
+
+  .script-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.8rem;
+    overflow: hidden;
+    animation: fadeUp 0.7s ease 0.35s both;
+  }
+  .script-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1.3rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .script-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .font-controls { display: flex; gap: 0.4rem; }
+  .font-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.18rem 0.45rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-size: 0.78rem;
+    transition: all 0.2s;
+  }
+  .font-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .script-body {
+    padding: 1.3rem;
+    max-height: 440px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+  .script-body::-webkit-scrollbar { width: 4px; }
+  .script-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.7rem;
+    border-radius: 2rem;
+    margin: 1rem 0 0.6rem;
+    opacity: 0.8;
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  .line {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.6rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    align-items: flex-start;
+  }
+  .line:hover { background: var(--surface2); }
+  .line.speaking {
+    background: rgba(212,150,10,0.1);
+    border-left: 3px solid var(--gold);
+  }
+  .line.bullet { align-items: flex-start; }
+  .line-icon { font-size: 0.85rem; flex-shrink: 0; padding-top: 0.15rem; }
+  .line-text {
+    font-family: 'Noto Sans Ethiopic', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .line-text strong {
+    font-family: 'Noto Serif Ethiopic', serif;
+    color: var(--gold2);
+    font-weight: 600;
+  }
+
+  .status-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-top: 1px solid var(--border);
+    background: var(--surface2);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  .status-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+  .status-dot.ready { background: var(--green2); }
+  .status-dot.playing { background: var(--gold); animation: pulse 1s infinite; }
+  .status-dot.recording { background: var(--rec); animation: pulse 0.8s infinite; }
+
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(14px)}  to{opacity:1;transform:translateY(0)} }
+
+  .toast {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    color: var(--text);
+    padding: 0.7rem 1.1rem;
+    border-radius: 0.55rem;
+    font-size: 0.82rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+    z-index: 999;
+    animation: slideIn 0.3s ease;
+    max-width: 280px;
+  }
+  @keyframes slideIn { from{opacity:0;transform:translateX(18px)} to{opacity:1;transform:translateX(0)} }
+
+  @media (max-width: 600px) {
+    .controls-bar { grid-template-columns: 1fr; justify-items: center; }
+    .voice-group { justify-content: center; }
+    .speed-group { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<div class="studio">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="flag-strip">
+      <div class="flag-green"></div>
+      <div class="flag-yellow"></div>
+      <div class="flag-red"></div>
+    </div>
+    <div class="badge">🎙️ AUDIO READER · የድምፅ አንባቢ</div>
+    <h1>የኢትዮጵያ ሪፖርተር<br>የቢዝነስ ዜናዎች ማጠቃለያ</h1>
+    <p class="sub">Ethiopian Reporter · Business News Summary · ዛሬ</p>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls-bar">
+    <div class="speed-group">
+      <label>Speed</label>
+      <button class="speed-btn" data-rate="0.75">0.75×</button>
+      <button class="speed-btn active" data-rate="1">1×</button>
+      <button class="speed-btn" data-rate="1.25">1.25×</button>
+      <button class="speed-btn" data-rate="1.5">1.5×</button>
+    </div>
+    <div class="play-controls">
+      <button class="btn-circle" id="btnRestart" title="Restart">⏮</button>
+      <button class="btn-circle" id="btnPrev" title="Previous">⏪</button>
+      <button class="btn-play" id="btnPlay">▶</button>
+      <button class="btn-circle" id="btnNext" title="Next">⏩</button>
+      <button class="btn-circle" id="btnStop" title="Stop">⏹</button>
+    </div>
+    <div class="voice-group">
+      <label>Voice</label>
+      <select class="voice-select" id="voiceSelect"><option>Loading…</option></select>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="waveform-section">
+    <div class="progress-header">
+      <div class="time-display">ጥቅስ <span id="curLine">0</span> / <span id="totLines">0</span></div>
+      <div class="time-display" id="pctTxt">0%</div>
+    </div>
+    <div class="progress-track" id="progressTrack">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+    <div class="waveform" id="waveform"></div>
+  </div>
+
+  <!-- Recording -->
+  <div class="record-panel">
+    <div class="record-header">
+      <div class="record-title">
+        <div class="rec-dot" id="recDot"></div>
+        <span>ቀረጻ / Recording</span>
+        <span id="recTimer" style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--muted);margin-left:0.4rem">00:00</span>
+      </div>
+      <div class="record-actions">
+        <button class="btn-rec btn-rec-start" id="btnRecord">⏺ ቀረጻ ጀምር</button>
+        <button class="btn-rec btn-rec-stop" id="btnStopRec" disabled>⏹ አቁም</button>
+        <button class="btn-rec btn-rec-dl" id="btnDownloadAll" disabled>⬇ ሁሉንም አውርድ</button>
+      </div>
+    </div>
+    <div class="recordings-list" id="recordingsList">
+      <div style="color:var(--muted);font-size:0.8rem;font-family:'DM Mono',monospace;">ቀረጻ የለም። ⏺ ቀረጻ ጀምርን ይጫኑ።</div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <div class="script-section">
+    <div class="script-header">
+      <div class="script-title">📄 ሙሉ ጽሑፍ — Full Script</div>
+      <div class="font-controls">
+        <button class="font-btn" id="fontDown">A−</button>
+        <button class="font-btn" id="fontUp">A+</button>
+      </div>
+    </div>
+    <div class="script-body" id="scriptBody"></div>
+    <div class="status-bar">
+      <div class="status-dot ready" id="statusDot"></div>
+      <span id="statusText">ዝግጁ — ▶ ይጫኑ ለማንበብ</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var ALPHABET = [
+  {label:"h (ha)", forms:["ሀ","ሁ","ሂ","ሃ","ሄ","ህ","ሆ"]},
+  {label:"l (le)", forms:["ለ","ሉ","ሊ","ላ","ሌ","ል","ሎ"]},
+  {label:"hh (hha)", forms:["ሐ","ሑ","ሒ","ሓ","ሔ","ሕ","ሖ"]},
